@@ -63,23 +63,7 @@
 
 <head>
  <style>
-
-#camera-screen{
-  display: none;
-  width: 100%;
-  text-align: center;
-  margin-top: 20px;
-}
-
-#camera-screen video,
-#camera-screen canvas{
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-}
- 
-
-.title-text{
+  .title-text{
   margin-top: 75px;
 }
  
@@ -194,11 +178,12 @@ div {color:rgb(0, 0, 0);}
 
 
 <script type="text/javascript">
-
-
-
-
-
+    function requestAccess() {
+    // 2つ目のボタンの要素を取得
+    const nextBtn = document.getElementById("start-button");
+    // 表示状態を切り替える（noneからblockにする）
+    nextBtn.style.display = 'block';
+  }
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
@@ -330,17 +315,14 @@ div {color:rgb(0, 0, 0);}
     }
 
     function startSensor() {
-  window.addEventListener("devicemotion", handleMotion);
+      window.addEventListener("devicemotion", handleMotion);
 
-  // メイン画面を消す
-  document.getElementById("main-screen").style.display = "none";
+      document.getElementById("permission-btn").style.display = "none";
+      document.getElementById("start-button").style.display = "block";
+      document.getElementById("data-area").style.display = "block";
 
-  // カメラ画面を出す
-  document.getElementById("camera-screen").style.display = "block";
-
-  // カメラ開始
-  init();
-}
+      speak("測定を開始します、実際の交通ルールに従って走行してください");
+    }
 
 function handleMotion(event) {
   let x = event.acceleration.x || 0;
