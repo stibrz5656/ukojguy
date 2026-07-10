@@ -317,19 +317,6 @@ div {color:rgb(0, 0, 0);}
     function startSensor() {
       window.addEventListener("devicemotion", handleMotion);
       let uttr = new SpeechSynthesisUtterance("");
-        window.speechSynthesis.speak(uttr);
-
-        document.getElementById("title-container").style.display = "none";
-        document.getElementById("image-container").style.display = "none";
-        document.getElementById("start-button").style.display = "none";
-        document.getElementById("help-button").style.display = "none";
-        document.getElementById("sensor-data").style.display = "block"; 
-
-        const warningBox = document.getElementById("warning-message");
-        warningBox.style.display = "block";
-        warningBox.innerText = "AI起動中...";
-
-
       document.getElementById("permission-btn").style.display = "none";
       document.getElementById("start-button").style.display = "block";
       document.getElementById("data-area").style.display = "block";
