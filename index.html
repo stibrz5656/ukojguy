@@ -68,7 +68,7 @@
 /* スマホだけ写真を上に上げる */
 @media screen and (max-width: 768px){
   .photo-area{
-    margin-top: -80px;
+    margin-top: -60px;
   }
 }
 .logo-char{
@@ -142,6 +142,7 @@
 
     text-align: center;
     z-index: 999;
+    display: none;
 }
 
 #status-box .speed {
@@ -271,11 +272,13 @@ function playBeep() {
     const STOP_TIME = 0.8;      // 1秒
 
     // Load the image model and setup the webcam
-    async function init() {
-        document.getElementById("title-text").style.display = "inline";     
-        document.getElementById("start-button").style.display = "none";
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
+   async function init() {
+    document.getElementById("title-text").style.display = "inline";
+    document.getElementById("start-button").style.display = "none";
+
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+
 
         // load the model and metadata
         // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
@@ -327,7 +330,7 @@ async function loop() {
     // run the webcam image through the image model
     async function predict() {
         const prediction = await model.predict(webcam.canvas);
-        
+        document.getElementById("status-box").style.display = "block";
         let isStopDetected = false; // 「止まれ」が見つかったかどうかの目印（フラグ）
 
         for (let i = 0; i < maxPredictions; i++) {
@@ -487,6 +490,6 @@ document.getElementById("val-total").textContent = total.toFixed(2);
 }
 }
  function showhelp(){
-        alert("注意”\n\n１自転車にスマホをセットしてください。\n２準備ができたら「センサーを許可」を押し、「開始」を押して発進してください。\n３安全運転で走行してください\n");
+        alert("注意”\n\n１自転車にスマホをセットしてください。\n２準備ができたら「センサーを許可」を押し、「開始」を押して安全確認を確認した上、発進してください。\n３安全運転で走行してください\n");
     }
 </script>
